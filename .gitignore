@@ -13,3 +13,15 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Project build artifacts
+bins/
+temporal-go-demo
+
+# Project test artifacts
+test
+test.log
