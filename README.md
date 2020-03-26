@@ -1,7 +1,7 @@
 # temporal-go-demo
-Temporal demo for GO meetups
+Temporal demo for Go meetups
 
-# GO Temporal Sample for GO Meetup
+# Go Temporal Sample for Go Meetup
 This package contains a sample demoed at [Go's 10th Anniversary Seattle Meetup](https://www.meetup.com/golang/events/265858683/)
 
 More Temporal info at:
