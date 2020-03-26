@@ -4,7 +4,6 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/uber-go/tally"
 	"go.uber.org/zap"
 
 	"go.temporal.io/temporal/activity"
@@ -22,14 +21,9 @@ func main() {
 	}
 
 	logger.Info("Zap logger created")
-	scope := tally.NoopScope
 
 	// The client is a heavyweight object that should be created once per process.
-	serviceClient, err := client.NewClient(client.Options{
-		HostPort:     common.Host,
-		DomainName:   common.Domain,
-		MetricsScope: scope,
-	})
+	serviceClient, err := client.NewClient(client.Options{})
 	if err != nil {
 		logger.Fatal("Unable to create client", zap.Error(err))
 	}

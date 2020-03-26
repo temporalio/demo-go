@@ -6,5 +6,6 @@ require (
 	github.com/stretchr/testify v1.5.1
 	github.com/uber-go/tally v3.3.15+incompatible
 	go.temporal.io/temporal v0.10.15
+	go.temporal.io/temporal-proto v0.20.1 // indirect
 	go.uber.org/zap v1.14.1
 )
