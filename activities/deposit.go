@@ -2,7 +2,6 @@ package activities
 
 import (
 	"context"
-
 	"go.temporal.io/temporal/activity"
 	"go.uber.org/zap"
 )

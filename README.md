@@ -40,12 +40,6 @@ If this does not work, see the instructions for running Temporal Server at https
 
 [Command Line Interface Documentation](https://docs.temporal.io/docs/08_cli)
 
-## Register the Domain
-
-To register the *sample* domain, run the following command once before running any samples:
-
-    tctl --do samples d re --rd 2 --oe "user@email" --desc "samples domain"
-
 ## See Temporal UI
 
 The Temporal Server running in a docker container includes a Web UI.
@@ -77,7 +71,15 @@ Activities Worker:
 ```
 Initiate Transfer:
 ```
-tctl --do samples wf start --tl samples_workflow_tl --wt transfer --wid transferAToB-1 --dt 2 --et 1200 --wrp 1 --if ./transferRequest.json
+tctl wf start --tl transfer --wt transfer --et 1200  --if ./transferRequest.json
+```
+Initiate Transfer Specifying Id of "T1":
+```
+tctl wf start --w T1 --tl transfer --wt transfer --et 1200  --if ./transferRequest.json
+```
+Initiate Transfer Specifying Id of "T1" and "reject duplicate workflow ID" ID reuse policy:
+```
+tctl wf start --w T1 --wrp 1 --tl transfer --wt transfer --et 1200  --if ./transferRequest.json
 ```
 
 ### Batch Transfer Sample
@@ -93,30 +95,30 @@ Activities Worker:
 
 Initiate Batch Transfer:
 ```
-tctl --do samples wf start --tl samples_workflow_tl --wt batch-transfer --wid batch-transfer-1 --dt 2 --et 1200 --wrp 1 --if ./batchTransferRequest.json
+tctl wf start -w batch-transfer-1 --tl transfer --wt batch-transfer --et 1200 --if ./batchTransferRequest.json
 ```
 
 Send Signal For First Withdrawal:
 ```
-tctl --do samples wf signal -w batch-transfer-1 --name withdraw --if ./withdrawSignalPayload1.json
+tctl wf signal -w batch-transfer-1 --name withdraw --if ./withdrawSignalPayload1.json
 ```
 
 Send Signal For Second Withdrawal:
 ```
-tctl --do samples wf signal -w batch-transfer-1 --name withdraw --if ./withdrawSignalPayload2.json
+tctl wf signal -w batch-transfer-1 --name withdraw --if ./withdrawSignalPayload2.json
 ```
 
 Send Signal For Third Withdrawal:
 ```
-tctl --do samples wf signal -w batch-transfer-1 --name withdraw --if ./withdrawSignalPayload3.json
+tctl wf signal -w batch-transfer-1 --name withdraw --if ./withdrawSignalPayload3.json
 ```
 
 Query Withdrawal Count:
 ```
-./tctl --do samples wf query -w batch-transfer-1 --qt get-count
+tctl wf query -w batch-transfer-1 --qt get-count
 ```
 
 Query Balance:
 ```
-./tctl --do samples wf query -w batch-transfer-1 --qt get-balance
+tctl wf query -w batch-transfer-1 --qt get-balance
 ```
